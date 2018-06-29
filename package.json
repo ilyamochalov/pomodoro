@@ -1,0 +1,22 @@
+{
+  "name": "pomodoro",
+  "version": "1.0.0",
+  "description": "Time management tool",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ilyamochalov/pomodoro.git"
+  },
+  "author": "Ilya Mochalov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ilyamochalov/pomodoro/issues"
+  },
+  "homepage": "https://github.com/ilyamochalov/pomodoro#readme",
+  "devDependencies": {
+    "electron": "^2.0.3"
+  }
+}
