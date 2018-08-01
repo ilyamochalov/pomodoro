@@ -3,40 +3,22 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Pomodoro</title>
+    <title>Pomodoro Timer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
-    <h1 id="countdown">5</h1>
+    <div>
+        <div class="inline" id="countdown_minutes"></div>
+        <div class="inline">:</div>
+        <div class="inline" id="countdown_seconds"></div>
+    </div>
+    <br>
 
     <button id="start_button">Start</button>
     <button id="pause_button">Pause</button>
-    <button id="cancel_button">Cancel</button>
-
-    <script>
-        var countdown = document.getElementById('countdown');
-        var start_button = document.getElementById('start_button');
-
-        start_button.addEventListener('click', startTimer);
-
-        function startTimer() {
-            countdown_int = parseInt(countdown.innerHTML);
-
-            var timeout_for_countdown = setInterval(function() {
-                console.log('stat')
-
-                if (countdown_int > 0) {
-                    countdown_int -= 1;
-                    countdown.innerHTML = countdown_int
-                    console.log(countdown_int);
-                } else {
-                    clearInterval(timeout_for_countdown)
-                }
-            }, 1000);
-
-        }
-    </script>
+    <button id="reset_button">Reset</button>
 </body>
-
+<script src="render_process.js"></script>
 </html>
