@@ -9,7 +9,7 @@ let resetButton = document.getElementById('reset_button');
 let countdownMinutes = document.getElementById('countdown_minutes');
 let countdownSeconds = document.getElementById('countdown_seconds');
 let isPaused = false;
-let defaultDuration = 1500;
+let defaultDuration = 600;
 let currentCountdown = 0;
 
 
@@ -84,6 +84,6 @@ function toSeconds(minutes, seconds) {
  * @param {*} countdown object with minutes and seconds
  */
 function updateCountdownHTML(countdown) {
-    countdownMinutes.innerHTML = countdown.minutes;
-    countdownSeconds.innerHTML = countdown.seconds;
+    countdownMinutes.innerHTML = countdown.minutes < 10 ? "0" + countdown.minutes : countdown.minutes;
+    countdownSeconds.innerHTML = countdown.seconds < 10 ? "0" + countdown.seconds : countdown.seconds;
 }
