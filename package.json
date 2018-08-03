@@ -18,5 +18,8 @@
   "homepage": "https://github.com/ilyamochalov/pomodoro#readme",
   "devDependencies": {
     "electron": "^2.0.3"
+  },
+  "dependencies": {
+    "node-notifier": "^5.2.1"
   }
 }

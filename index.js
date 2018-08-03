@@ -1,5 +1,7 @@
 'use strict';
 const {app, BrowserWindow, ipcMain, Notification} = require('electron');
+const notifier = require('node-notifier');
+const path = require('path');
 
 function CreateWindow() {
     // main window
@@ -10,23 +12,17 @@ function CreateWindow() {
 
     // XXX for development
     win.toggleDevTools()
-    console.log('created a window')
 }
 
-ipcMain.on('notification:new', function(){
-    
-    // let notificationWindow = new BrowserWindow({width: 600, height: 400});
-    // notificationWindow.loadFile('index.html')
-    // notificationWindow.toggleDevTools()
-    
-    let myNotification = new Notification({
-        title: "Notification Title",
-        body: 'Body text'
-    });
-
-    myNotification.show();
-
-    console.log(myNotification.show())
+ipcMain.on('notification', (event, arg) => {
+    notifier.notify({
+        title: "Pomodoro",
+        message: arg,
+        icon: path.join(__dirname, 'icon.png'),
+        timeout: 100,
+        actions: "OK"
+    })
+    event.returnValue = 'pong'
 });
 
 app.on('ready', CreateWindow)

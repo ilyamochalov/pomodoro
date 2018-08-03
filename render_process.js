@@ -2,7 +2,6 @@
 const electron = require('electron');
 const { ipcRenderer } = electron;
 
-
 let startButton = document.getElementById('start_button');
 let pauseButton = document.getElementById('pause_button');
 let resetButton = document.getElementById('reset_button');
@@ -16,7 +15,6 @@ let defaultDuration = {
 };
 let currentCountdown = 0;
 
-
 updateCountdownHTML(toMinutesAndSeconds(defaultDuration[checkForMode()]));
 
 startButton.addEventListener('click', countdownRoutine);
@@ -24,6 +22,9 @@ startButton.addEventListener('click', countdownRoutine);
 pauseButton.addEventListener('click', pauseCountdown);
 
 resetButton.addEventListener('click', resetCountdown);
+
+let testButton = document.getElementById('test');
+testButton.addEventListener('click', notify);
 
 for (let button of radioButtons) {
     button.addEventListener('click', function(event){
@@ -42,6 +43,8 @@ function countdownRoutine() {
         if (currentCountdown > 0 && !isPaused) {
             currentCountdown -= 1;
             updateCountdownHTML(toMinutesAndSeconds(currentCountdown));
+        } else if (currentCountdown > 0){
+            clearInterval(timeout_for_countdown);
         } else {
             notify();
             clearInterval(timeout_for_countdown);
@@ -100,7 +103,7 @@ function updateCountdownHTML(countdown) {
 }
 
 function notify() {
-    // defaultDuration = 
+    ipcRenderer.sendSync('notification', `Time is up for ${checkForMode()}`)
 }
 
 function checkForMode() {
