@@ -3,7 +3,7 @@ const {app, BrowserWindow, ipcMain, Notification} = require('electron');
 
 function CreateWindow() {
     // main window
-    let win = new BrowserWindow({width: 600, height: 400})
+    let win = new BrowserWindow({width: 400, height: 300})
     
     // load index.html
     win.loadFile('index.html')
@@ -15,9 +15,9 @@ function CreateWindow() {
 
 ipcMain.on('notification:new', function(){
     
-    let notificationWindow = new BrowserWindow({width: 600, height: 400});
-    notificationWindow.loadFile('index.html')
-    notificationWindow.toggleDevTools()
+    // let notificationWindow = new BrowserWindow({width: 600, height: 400});
+    // notificationWindow.loadFile('index.html')
+    // notificationWindow.toggleDevTools()
     
     let myNotification = new Notification({
         title: "Notification Title",

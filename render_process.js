@@ -8,12 +8,16 @@ let pauseButton = document.getElementById('pause_button');
 let resetButton = document.getElementById('reset_button');
 let countdownMinutes = document.getElementById('countdown_minutes');
 let countdownSeconds = document.getElementById('countdown_seconds');
+let radioButtons = document.getElementsByName("clockMode")
 let isPaused = false;
-let defaultDuration = 600;
+let defaultDuration = {
+    work: 1500,
+    rest: 300,
+};
 let currentCountdown = 0;
 
 
-updateCountdownHTML(toMinutesAndSeconds(defaultDuration));
+updateCountdownHTML(toMinutesAndSeconds(defaultDuration[checkForMode()]));
 
 startButton.addEventListener('click', countdownRoutine);
 
@@ -21,11 +25,17 @@ pauseButton.addEventListener('click', pauseCountdown);
 
 resetButton.addEventListener('click', resetCountdown);
 
+for (let button of radioButtons) {
+    button.addEventListener('click', function(event){
+        resetCountdown()
+    })
+}
+
 function countdownRoutine() {
     // remove pause 
     isPaused = false
 
-    currentCountdown = currentCountdown || defaultDuration
+    currentCountdown = currentCountdown || defaultDuration[checkForMode()]
 
     let timeout_for_countdown = setInterval(function () {
 
@@ -33,7 +43,8 @@ function countdownRoutine() {
             currentCountdown -= 1;
             updateCountdownHTML(toMinutesAndSeconds(currentCountdown));
         } else {
-            clearInterval(timeout_for_countdown)
+            notify();
+            clearInterval(timeout_for_countdown);
         }
     }, 1000);
 }
@@ -44,7 +55,7 @@ function pauseCountdown() {
 
 function resetCountdown() {
     pauseCountdown();
-    currentCountdown = defaultDuration;
+    currentCountdown = defaultDuration[checkForMode()];
     updateCountdownHTML(toMinutesAndSeconds(currentCountdown));
 }
 
@@ -86,4 +97,14 @@ function toSeconds(minutes, seconds) {
 function updateCountdownHTML(countdown) {
     countdownMinutes.innerHTML = countdown.minutes < 10 ? "0" + countdown.minutes : countdown.minutes;
     countdownSeconds.innerHTML = countdown.seconds < 10 ? "0" + countdown.seconds : countdown.seconds;
+}
+
+function notify() {
+    // defaultDuration = 
+}
+
+function checkForMode() {
+    for (const button of radioButtons) {
+        if (button.checked) return button.value
+    }
 }
