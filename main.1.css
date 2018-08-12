@@ -1,0 +1,26 @@
+html,
+body,
+.container {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.left{
+    width: 350px;
+    height: inherit;
+    float: left;
+    border-right: 1px solid #000;
+}
+
+.right{
+
+}
+
+.time {
+    float: left;
+}
+
+.equal-height {
+    height: 50px;
+}

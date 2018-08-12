@@ -5,13 +5,13 @@ const path = require('path');
 
 function CreateWindow() {
     // main window
-    let win = new BrowserWindow({width: 400, height: 300})
+    let win = new BrowserWindow({width: 600, height: 300, resizable: false})
     
     // load index.html
-    win.loadFile('index.html')
+    win.loadFile('index.1.html')
 
     // XXX for development
-    win.toggleDevTools()
+    // win.toggleDevTools()
 }
 
 ipcMain.on('notification', (event, arg) => {
