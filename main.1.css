@@ -6,6 +6,11 @@ body,
   padding: 0;
 }
 
+@font-face {
+    font-family: 'digital-mono-italic';
+    src: url('digital-7\ \(mono\ italic\).ttf');
+}
+
 .left{
     width: 350px;
     height: inherit;
@@ -13,13 +18,29 @@ body,
     border-right: 1px solid #000;
 }
 
-.right{
-
-}
-
 .time {
-    float: left;
+    /* display: inline-block; */
 }
+
+.minutes, .seconds {
+    font-family:'digital-mono-italic';
+    float: left;
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    font-size: 150px;
+}
+
+/* .seconds {
+    float: right;
+    width: 50%;
+    height: 100%;
+    text-align: center;
+} */
 
 .equal-height {
     height: 50px;
