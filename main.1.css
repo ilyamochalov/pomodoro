@@ -4,6 +4,12 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  background-color: silver;
+}
+
+.clock-box {
+    padding: 10% 5%;
 }
 
 @font-face {
@@ -15,33 +21,43 @@ body,
     width: 350px;
     height: inherit;
     float: left;
-    border-right: 1px solid #000;
+    -webkit-app-region: drag;
 }
 
-.time {
-    /* display: inline-block; */
+.right {
+    height: inherit;
+    float: left;
+    width: 100px;
 }
 
-.minutes, .seconds {
+.minutes, .seconds, .time-dots {
     font-family:'digital-mono-italic';
     float: left;
-    width: 50%;
+    width: 45%;
     height: 100%;
     text-align: center;
     display: flex;
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    font-size: 150px;
+    font-size: 135px;
+    background-color: slategray;
 }
 
-/* .seconds {
-    float: right;
-    width: 50%;
-    height: 100%;
-    text-align: center;
-} */
+.time-dots {
+    width: 10%;
+    font-size: 75px;
+}
 
 .equal-height {
-    height: 50px;
+    height: 40px;
+    text-align: center;
+    padding-top: 6px;
 }
+
+button {
+    border-radius: 12px;
+    height: 35px;
+    width: 60px;
+}
+

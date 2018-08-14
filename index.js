@@ -5,7 +5,8 @@ const path = require('path');
 
 function CreateWindow() {
     // main window
-    let win = new BrowserWindow({width: 600, height: 300, resizable: false})
+    let win = new BrowserWindow({width: 470, height: 200, resizable: false,
+    frame: false})
     
     // load index.html
     win.loadFile('index.1.html')
