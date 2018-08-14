@@ -61,3 +61,14 @@ button {
     width: 60px;
 }
 
+.settings-box {
+    background-color: aliceblue;
+    opacity: 0.9;
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    margin: auto;
+    display: none;
+    height: 50%;
+    width: 50%;
+    align-content: center;
+}

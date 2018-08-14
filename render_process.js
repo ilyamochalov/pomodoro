@@ -1,10 +1,13 @@
 'use strict';
 const electron = require('electron');
 const { ipcRenderer } = electron;
+const BrowserWindow = require('electron').remote.BrowserWindow;
 
 let startButton = document.getElementById('start_button');
 let pauseButton = document.getElementById('pause_button');
 let resetButton = document.getElementById('reset_button');
+let settingsButton = document.getElementById('settings_button');
+let settingsBox = document.getElementsByClassName('settings-box');
 let countdownMinutes = document.getElementById('countdown_minutes');
 let countdownSeconds = document.getElementById('countdown_seconds');
 let radioButtons = document.getElementsByName("clockMode")
@@ -14,6 +17,7 @@ let defaultDuration = {
     rest: 300,
 };
 let currentCountdown = 0;
+let settingsWindow
 
 updateCountdownHTML(toMinutesAndSeconds(defaultDuration[checkForMode()]));
 
@@ -23,8 +27,8 @@ pauseButton.addEventListener('click', pauseCountdown);
 
 resetButton.addEventListener('click', resetCountdown);
 
-let testButton = document.getElementById('test');
-testButton.addEventListener('click', notify);
+settingsButton.addEventListener('click', openSettings);
+
 
 for (let button of radioButtons) {
     button.addEventListener('click', function(event){
@@ -110,4 +114,8 @@ function checkForMode() {
     for (const button of radioButtons) {
         if (button.checked) return button.value
     }
+}
+
+function openSettings(params) {
+ 
 }
