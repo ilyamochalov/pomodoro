@@ -13,7 +13,7 @@ function CreateWindow() {
     })
     
     // load index.html
-    win.loadFile('index.1.html')
+    win.loadFile('index.html')
 
     // XXX for development
     win.toggleDevTools()

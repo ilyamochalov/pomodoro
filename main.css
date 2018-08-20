@@ -1,3 +1,74 @@
-.inline {
+html,
+body,
+.container {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: silver;
+}
+
+.clock-box {
+    padding: 10% 5%;
+}
+
+@font-face {
+    font-family: 'digital-mono-italic';
+    src: url('digital-7\ \(mono\ italic\).ttf');
+}
+
+.left{
+    width: 350px;
+    height: inherit;
     float: left;
+    -webkit-app-region: drag;
+}
+
+.right {
+    height: inherit;
+    float: left;
+    width: 100px;
+}
+
+.minutes, .seconds, .time-dots {
+    font-family:'digital-mono-italic';
+    float: left;
+    width: 45%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    font-size: 135px;
+    background-color: slategray;
+}
+
+.time-dots {
+    width: 10%;
+    font-size: 75px;
+}
+
+.equal-height {
+    height: 40px;
+    text-align: center;
+    padding-top: 6px;
+}
+
+button {
+    border-radius: 12px;
+    height: 35px;
+    width: 60px;
+}
+
+.settings-box {
+    background-color: aliceblue;
+    opacity: 0.9;
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    margin: auto;
+    display: none;
+    height: 50%;
+    width: 50%;
+    align-content: center;
 }

@@ -17,7 +17,7 @@ let defaultDuration = {
     rest: 300,
 };
 let currentCountdown = 0;
-let settingsWindow
+let isActive = false; // global status (true when has a countdown, false otherwise)
 
 updateCountdownHTML(toMinutesAndSeconds(defaultDuration[checkForMode()]));
 
@@ -36,22 +36,32 @@ for (let button of radioButtons) {
     })
 }
 
+// send notifications every minute to remind user to rest or work 
+let annoying_notifications = setInterval(function(){
+    if (!isActive) {
+        notify('What are you up to? Are you working or resting?')
+    }
+}, 1000*60);
+
 function countdownRoutine() {
     // remove pause 
-    isPaused = false
+    isPaused = false;
+    isActive = true;
 
-    currentCountdown = currentCountdown || defaultDuration[checkForMode()]
+    currentCountdown = currentCountdown || defaultDuration[checkForMode()];
 
     let timeout_for_countdown = setInterval(function () {
 
-        if (currentCountdown > 0 && !isPaused) {
+        if (currentCountdown > 0 && !isPaused) { //counting down
             currentCountdown -= 1;
             updateCountdownHTML(toMinutesAndSeconds(currentCountdown));
-        } else if (currentCountdown > 0){
+        } else if (currentCountdown > 0){ // paused
             clearInterval(timeout_for_countdown);
-        } else {
-            notify();
+            isActive = false;
+        } else { // time is up
+            notify(`Time is up for ${checkForMode()}`);
             clearInterval(timeout_for_countdown);
+            isActive = false;
         }
     }, 1000);
 }
@@ -106,8 +116,8 @@ function updateCountdownHTML(countdown) {
     countdownSeconds.innerHTML = countdown.seconds < 10 ? "0" + countdown.seconds : countdown.seconds;
 }
 
-function notify() {
-    ipcRenderer.sendSync('notification', `Time is up for ${checkForMode()}`)
+function notify(message) {
+    ipcRenderer.sendSync('notification', message)
 }
 
 function checkForMode() {

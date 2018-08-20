@@ -9,23 +9,37 @@
 </head>
 
 <body>
-    <div>
-        <div class="inline" id="countdown_minutes"></div>
-        <div class="inline">:</div>
-        <div class="inline" id="countdown_seconds"></div>
+    <div class="container">
+        <div class="left">
+                <div class="container clock-box">
+                        <div class="minutes" id="countdown_minutes"></div>
+                        <div class="time-dots">:</div>
+                        <div class="seconds" id="countdown_seconds"></div>
+                </div>
+        </div>
+        <div class="right">
+            <div class="equal-height">
+                <button id="start_button">&#x23f5;</button> 
+            </div>
+            <div class="equal-height">
+                <button id="pause_button">&#x23f8;</button>
+            </div>
+            <div class="equal-height">
+                <button id="reset_button">&#x23f9;</button>
+            </div>
+            <div class="equal-height">
+                <button id="settings_button">settings</button>
+                <form id="workRestRadio">
+                        <input type="radio" name="clockMode" value="work" checked="true">W
+                        <input type="radio" name="clockMode" value="rest">R
+                </form>
+            </div>
+        </div>
     </div>
-    <br>
 
-    <form id="workRestRadio">
-        <input type="radio" name="clockMode" value="work" checked="true"> Work hard<br>
-        <input type="radio" name="clockMode" value="rest"> Rest hard
-    </form>
-
-    <br>
-    <button id="start_button">Start</button>
-    <button id="pause_button">Pause</button>
-    <button id="reset_button">Reset</button>
-    <button id="test">test</button>
+    <div class="settings-box">
+            Settings
+    </div>
 </body>
 <script src="render_process.js"></script>
 </html>
