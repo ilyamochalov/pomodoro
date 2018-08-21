@@ -7,10 +7,13 @@ let startButton = document.getElementById('start_button');
 let pauseButton = document.getElementById('pause_button');
 let resetButton = document.getElementById('reset_button');
 let settingsButton = document.getElementById('settings_button');
-let settingsBox = document.getElementsByClassName('settings-box');
+let settingsBox = document.querySelector('.settings-box');
 let countdownMinutes = document.getElementById('countdown_minutes');
 let countdownSeconds = document.getElementById('countdown_seconds');
-let radioButtons = document.getElementsByName("clockMode")
+let radioButtons = document.getElementsByName("clockMode");
+let draggablePart = document.querySelector(".draggable");
+let annoyingNotificationsCheckBox = document.getElementById("annoyingNotifications");
+
 let isPaused = false;
 let defaultDuration = {
     work: 1500,
@@ -27,21 +30,21 @@ pauseButton.addEventListener('click', pauseCountdown);
 
 resetButton.addEventListener('click', resetCountdown);
 
-settingsButton.addEventListener('click', openSettings);
+settingsButton.addEventListener('click', toggleSettings);
 
 
 for (let button of radioButtons) {
-    button.addEventListener('click', function(event){
+    button.addEventListener('click', function (event) {
         resetCountdown()
     })
 }
 
 // send notifications every minute to remind user to rest or work 
-let annoying_notifications = setInterval(function(){
-    if (!isActive) {
+setInterval(function () {
+    if (!isActive && annoyingNotificationsCheckBox.checked) {
         notify('What are you up to? Are you working or resting?')
     }
-}, 1000*60);
+}, 1000 * 60);
 
 function countdownRoutine() {
     // remove pause 
@@ -55,7 +58,7 @@ function countdownRoutine() {
         if (currentCountdown > 0 && !isPaused) { //counting down
             currentCountdown -= 1;
             updateCountdownHTML(toMinutesAndSeconds(currentCountdown));
-        } else if (currentCountdown > 0){ // paused
+        } else if (currentCountdown > 0) { // paused
             clearInterval(timeout_for_countdown);
             isActive = false;
         } else { // time is up
@@ -116,16 +119,35 @@ function updateCountdownHTML(countdown) {
     countdownSeconds.innerHTML = countdown.seconds < 10 ? "0" + countdown.seconds : countdown.seconds;
 }
 
+
+/**
+ * Trigger a notification
+ *
+ * @param {*} message A string to show in notification body
+ */
 function notify(message) {
     ipcRenderer.sendSync('notification', message)
 }
 
+
+/**
+ * Check current mode
+ *
+ * @returns string name of current mode (work or rest)
+ */
 function checkForMode() {
     for (const button of radioButtons) {
         if (button.checked) return button.value
     }
 }
 
-function openSettings(params) {
- 
+function toggleSettings() {
+    resetCountdown();
+    if (settingsBox.style.display === 'block') {
+        settingsBox.style.display = 'none'
+        draggablePart.style.webkitAppRegion = 'drag'
+    } else {
+        settingsBox.style.display = 'block'
+        draggablePart.style.webkitAppRegion = 'no-drag'
+    }
 }

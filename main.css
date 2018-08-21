@@ -17,11 +17,14 @@ body,
     src: url('digital-7\ \(mono\ italic\).ttf');
 }
 
+.draggable {
+    -webkit-app-region: drag;
+} 
+
 .left{
     width: 350px;
     height: inherit;
     float: left;
-    -webkit-app-region: drag;
 }
 
 .right {

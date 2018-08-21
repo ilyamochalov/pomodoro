@@ -10,7 +10,7 @@
 
 <body>
     <div class="container">
-        <div class="left">
+        <div class="left draggable">
                 <div class="container clock-box">
                         <div class="minutes" id="countdown_minutes"></div>
                         <div class="time-dots">:</div>
@@ -38,7 +38,18 @@
     </div>
 
     <div class="settings-box">
-            Settings
+        <span>Settings</span>
+
+        <div>
+            <input type="text" placeholder="Work mode duration">
+        </div>
+
+        <div>
+            <input type="text" placeholder="Rest mode duration">
+        </div>
+
+        <input type="checkbox" id="annoyingNotifications" checked="true"> Annoying notifications
+
     </div>
 </body>
 <script src="render_process.js"></script>
